@@ -9,6 +9,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function(){
     Route::get('/home', \App\Livewire\Home::class)->name('home');
     Route::get('/profile', \App\Livewire\Auth\Profile::class)->name('profile');
+    Route::get('/menu', \App\Livewire\Menu\Index::class)->name('menu.index');
+
 });
 
 Route::middleware('guest')->group(function(){

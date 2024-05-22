@@ -27,6 +27,8 @@ class Profile extends Component
         }
 
         $this->user->update($valid);
+
+
     }
 
     public function mount()

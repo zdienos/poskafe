@@ -20,7 +20,7 @@
         <h3 class="menu-title">Data Master</h3>
         <ul>
             <li>
-                <a href="" @class(['active' => false]) wire:navigate>
+                <a href="{{ route('menu.index') }}" @class(['active' => Route::is('menu.index')]) wire:navigate>
                     <x-tabler-layout-grid-add class="size-5"/>
                     <span>Menu Makanan</span>
                 </a>
