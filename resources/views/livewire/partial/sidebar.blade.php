@@ -53,10 +53,10 @@
                 </a>
             </li>
             <li>
-                <a href="" @class(['active' => false]) wire:navigate>
+                <button wire:click="logout">
                     <x-tabler-logout class="size-5"/>
                     <span>Logout</span>
-                </a>
+                </button>
             </li>
         </ul>
     </li>

@@ -6,7 +6,7 @@
 
 html {
     font-family: "Montserrat Alternates", sans-serif;
-    @apply font-semibold;
+    @apply font-medium;
 }
 
 .textarea-bordered,
@@ -27,4 +27,8 @@ html {
 
 .card {
     @apply bg-base-100 border-2 border-base-300;
+}
+
+.page-wrapper {
+    @apply container w-full max-w-6xl p-6  mx-auto;
 }

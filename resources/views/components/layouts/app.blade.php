@@ -15,7 +15,7 @@
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
                 @livewire('partial.navbar')
-                <!-- Page content here -->
+                {{ $slot }}
             </div>
             <div class="drawer-side">
                 <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
