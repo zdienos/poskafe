@@ -47,11 +47,11 @@
                 </label>
                 <label class="form-control">
                     <div class="label">
-                        <span class="label-text">Keterangan </span>
+                        <span class="label-text row-1">Keterangan </span>
                     </div>
-                    <textarea placeholder="Tulis keterangan menu di sini" @class([
-                        'input input-bordered',
-                        'input-error' => $errors->first('form.description'),
+                    <textarea rows="3" placeholder="Tulis keterangan menu di sini" @class([
+                        'textarea textarea-bordered resize-none',
+                        'textarea-error' => $errors->first('form.description'),
                     ]) wire:model="form.description"></textarea>
                 </label>
             </div>
