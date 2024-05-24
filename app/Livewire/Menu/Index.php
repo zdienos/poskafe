@@ -7,12 +7,23 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    protected $listeners = [
+        'reload' => '$refresh'
+    ];
+
+    public $search;
     public $no = 1;
 
     public function render()
     {
         return view('livewire.menu.index', [
-            'menus' => Menu::get(),
+            'menus' => Menu::when($this->search, function($menu){
+                $menu->where('name', 'like', '%'.$this->search.'%')
+                ->orWhere('type', 'like', '%'.$this->search.'%')
+                ->orWhere('description', 'like', '%'.$this->search.'%');
+
+
+            })->get(),
         ]);
     }
 }

@@ -1,7 +1,7 @@
 <div>
     <input type="checkbox" id="my_modal_6" class="modal-toggle" @checked($show) />
     <div class="modal" role="dialog">
-        <div class="modal-box">
+        <form class="modal-box" wire:submit="simpan">
             <h3 class="font-bold text-lg">Menu Detail</h3>
             <div class="py-4 space-y-2">
                 <div class="flex justify-center">
@@ -39,6 +39,7 @@
                         'select select-bordered',
                         'select-error' => $errors->first('form.type'),
                     ]) wire:model="form.type">
+                        <option value=""></option>
                         @foreach ($types as $type)
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach
@@ -50,17 +51,17 @@
                     </div>
                     <textarea placeholder="Tulis keterangan menu di sini" @class([
                         'input input-bordered',
-                        'input-error' => $errors->first('form.'),
-                    ]) wire:model="form.desc"></textarea>
+                        'input-error' => $errors->first('form.description'),
+                    ]) wire:model="form.description"></textarea>
                 </label>
             </div>
             <div class="modal-action justify-between">
-                <button type="button" class="btn btn-ghost">Close</button>
+                <button type="button" class="btn btn-ghost" wire:click='closeModal'>Close</button>
                 <button class="btn btn-primary">
                     <x-tabler-check class="size-5" />
                     <span>Simpan</span>
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

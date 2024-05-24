@@ -6,6 +6,7 @@ use App\Livewire\Forms\MenuForm;
 use App\Models\Menu;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 
 class Actions extends Component
 {
@@ -15,10 +16,36 @@ class Actions extends Component
     public $photo;
     public MenuForm $form;
 
-    #[On('createMenu')]
-    public function createMenu()
-    {
+    #[On('createMenu')] public function createMenu(){
         $this->show = true;
+    }
+
+    #[On('editMenu')] public function editMenu(Menu $menu){
+        $this->form->setMenu($menu);
+        $this->show = true;
+    }
+
+    #[On('deleteMenu')] public function deleteMenu(Menu $menu){
+        $menu->delete();
+        $this->dispatch('reload');
+    }
+
+    public function simpan(){
+        if($this->photo) {
+            $this->form->photo = $this->photo->hashName('menu');
+            $this->photo->store('menu');
+        }
+        if(isset($this->form->menu)) {
+            $this->form->update();
+        } else {
+            $this->form->store();
+        }
+        $this->closeModal();
+        $this->dispatch('reload');
+    }
+    public function closeModal(){
+        $this->show = false;
+        $this->form->reset();
     }
 
     public function render()

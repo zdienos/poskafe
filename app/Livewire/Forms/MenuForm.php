@@ -10,7 +10,7 @@ class MenuForm extends Form
 {
     public $name;
     public $price;
-    public $desc;
+    public $description;
     public $type;
     public $photo;
 
@@ -20,7 +20,7 @@ class MenuForm extends Form
         $this->menu = $menu;
         $this->name = $menu->name;
         $this->price = $menu->price;
-        $this->desc = $menu->desc;
+        $this->description = $menu->description;
         $this->type = $menu->type;
     }
 
@@ -29,8 +29,12 @@ class MenuForm extends Form
             'name' => 'required',
             'price' => 'required',
             'type' => 'required',
-            'desc' => '',
+            'description' => '',
         ]);
+
+        if($this->photo) {
+            $validate['photo'] = $this->photo;
+        }
 
         Menu::create($validate);
         $this->reset();
@@ -41,8 +45,12 @@ class MenuForm extends Form
             'name' => 'required',
             'price' => 'required',
             'type' => 'required',
-            'desc' => '',
+            'description' => '',
         ]);
+
+        if($this->photo) {
+            $validate['photo'] = $this->photo;
+        }
 
         $this->menu->update($validate);
         $this->reset();

@@ -1,9 +1,9 @@
 <div class="page-wrapper">
 
     <div class="flex justify-between">
-        <input type="search" class="input input-bordered w-full max-w-xs" wire:model="search" placeholder="Search">
+        <input type="search" class="input input-bordered w-full max-w-xs" wire:model="search" placeholder="Search" wire:model.live="search">
 
-        <button class="btn btn-primary" wire:click="dispatch('createMenu')">
+        <button class="btn btn-primary" wire:click="$dispatch('createMenu')">
             <x-tabler-plus class="size-5"/>
             <span>Menu</span>
         </button>
@@ -16,7 +16,7 @@
                 <th>Menu</th>
                 <th>Harga</th>
                 <th>Keterangan</th>
-                <th>Actions</th>
+                <th class="text-center">Actions</th>
             </thead>
             <tbody>
                 @foreach ($menus as $menu)
@@ -36,11 +36,20 @@
                             </div>
                         </td>
                         <td>{{ $menu->harga }}</td>
-                        <td>{{ $menu->description }}</td>
+                        <td class="whitespace-normal w-80">
+                            <div class="line-clamp-2">
+                                {{ $menu->description }}
+                            </div>
+                        </td>
                         <td>
-                            <button class="btn btn-xs btn-square">
-                                <x-tabler-edit class="size-4"/>
-                            </button>
+                            <div class="flex justify-center gap-1">
+                                <button class="btn btn-xs btn-square" wire:click="$dispatch('editMenu', {menu: {{ $menu->id }}})">
+                                    <x-tabler-edit class="size-4"/>
+                                </button>
+                                <button class="btn btn-xs btn-square" wire:click="$dispatch('deleteMenu', {menu: {{ $menu->id }}})">
+                                    <x-tabler-trash class="size-4"/>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

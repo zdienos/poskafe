@@ -38,7 +38,7 @@ thead {
 }
 
 .table-wrapper {
-    @apply bg-base-100 border-2 border-base-300 overflow-x-auto rounded-lg;
+    @apply bg-base-100 border-2 border-base-300 overflow-x-auto rounded-lg whitespace-nowrap;
 }
 
 .modal-box {
