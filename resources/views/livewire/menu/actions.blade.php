@@ -7,7 +7,7 @@
                 <div class="flex justify-center">
                     <label for="pickphoto" class="avatar">
                         <div class="w-24 rounded-xl">
-                            <img src="{{ $photo? $photo->temporaryUrl() : url('/images/noimage.png') }}" />
+                            <img src="{{ $photo ? $photo->temporaryUrl() : url('/images/noimage.png') }}" />
                         </div>
                     </label>
                 </div>
@@ -39,7 +39,7 @@
                         'select select-bordered',
                         'select-error' => $errors->first('form.type'),
                     ]) wire:model="form.type">
-                        <option value=""></option>
+                        <option value="">Pilih Type</option>
                         @foreach ($types as $type)
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach

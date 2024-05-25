@@ -12,6 +12,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/menu', \App\Livewire\Menu\Index::class)->name('menu.index');
     Route::get('/customer', \App\Livewire\Customer\Index::class)->name('customer.index');
 
+    Route::get('/transaksi', \App\Livewire\Transaksi\Index::class)->name('transaksi.index');
+    Route::get('/transaksi/create', \App\Livewire\Transaksi\Actions::class)->name('transaksi.create');
+
+
 });
 
 Route::middleware('guest')->group(function(){

@@ -44,3 +44,7 @@ thead {
 .modal-box {
     @apply scrollbar-hide;
 }
+
+.card-divider {
+    @apply divide-y-2 divide-base-300;
+}
