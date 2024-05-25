@@ -37,7 +37,7 @@
         </ul>
         <ul>
             <li>
-                <a href="" @class(['active' => false]) wire:navigate>
+                <a href="{{ route('transaksi.index') }}" @class(['active' => Route::is('transaksi.index')]) wire:navigate>
                     <x-tabler-file class="size-5"/>
                     <span>Riwayat Transaksi</span>
                 </a>

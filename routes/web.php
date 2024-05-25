@@ -14,6 +14,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/transaksi', \App\Livewire\Transaksi\Index::class)->name('transaksi.index');
     Route::get('/transaksi/create', \App\Livewire\Transaksi\Actions::class)->name('transaksi.create');
+    Route::get('/transaksi/{transaksi}/edit', \App\Livewire\Transaksi\Actions::class)->name('transaksi.edit');
+
 
 
 });
