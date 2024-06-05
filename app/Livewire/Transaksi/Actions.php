@@ -5,6 +5,7 @@ namespace App\Livewire\Transaksi;
 use App\Livewire\Forms\TransaksiForm;
 use App\Models\Customer;
 use App\Models\Menu;
+use App\Models\Transaksi;
 use Livewire\Component;
 
 class Actions extends Component
@@ -12,6 +13,7 @@ class Actions extends Component
     public $search;
     public $items = [];
     public TransaksiForm $form;
+    public ?Transaksi $transaksi;
 
     public function render()
     {
@@ -23,6 +25,22 @@ class Actions extends Component
                 })->get()->groupBy('type'),
             'customers' => Customer::pluck('name', 'id')
         ]);
+    }
+
+    // public function mount(?Transaksi $transaksi){
+    //     if(isset($transaksi)){
+    //         $this->form->setTransaksi($transaksi);
+    //         $this->items = $this->form->items;
+    //     } else {
+    //         $this->items = [];
+    //     }
+    // }
+
+    public function mount(){
+        if(isset($this->transaksi)){
+            $this->form->setTransaksi($transaksi);
+            $this->items = $this->form->items;
+        }
     }
 
     public function addItem(Menu $menu){
@@ -60,20 +78,28 @@ class Actions extends Component
     }
 
     public function getTotalHarga(){
-        $prices = array_column($this->items, 'price');
-        return array_sum($prices);
+        if(isset($this->items)){
+            $prices = array_column($this->items, 'price');
+            return array_sum($prices);
+        } else {
+            return 0;
+        }
     }
 
     public function simpan() {
-        // $this->emit('reload');
-        // $this->emit('closeModal');
         $this->validate([
             'items' => 'required'
         ]);
+
         $this->form->items = $this->items;
         $this->form->price = $this->getTotalHarga();
 
-        $this->form->store();
+        if (isset($this->form->transaksi)) {
+            $this->form->update();
+        } else {
+            $this->form->store();
+        }
+
         $this->redirect(route('transaksi.index'), true);
         // $this->custom
         // dd($this->items, $this->form->customer_id, $this->form->description);

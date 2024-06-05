@@ -55,7 +55,7 @@
                         <option value="{{ $id }}">{{ $name }}</option>
                     @endforeach
                 </select>
-                <textarea rows="3" class="textarea textarea-bordered resize-none" placeholder="Keterangan transaksi, bisa diisi dengan no meja, takeway atau lainnya" wire:model="form.description"></textarea>
+                <textarea rows="3" @class(['textarea textarea-bordered resize-none', 'resize-none textarea-error' => $errors->first('form.description')])  class="" placeholder="Keterangan transaksi, bisa diisi dengan no meja, takeway atau lainnya" wire:model="form.description"></textarea>
 
                 <div class="card-actions justify-between">
                     <div class="flex flex-col">
